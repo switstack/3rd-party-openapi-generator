@@ -58,11 +58,7 @@ template bool {{classname}}::fromMultiPart<{{.}}>(std::shared_ptr<MultipartFormD
 {{^oneOf}}
 {{#isEnum}}
 
-namespace
-{
-using EnumUnderlyingType = {{#isNumeric}}int64_t{{/isNumeric}}{{^isNumeric}}utility::string_t{{/isNumeric}};
-
-{{classname}}::e{{classname}} toEnum(const EnumUnderlyingType& val)
+{{classname}}::e{{classname}} {{classname}}::toEnum(const EnumUnderlyingType& val)
 {
 {{#allowableValues}}
 {{#isNumeric}}
@@ -88,7 +84,7 @@ using EnumUnderlyingType = {{#isNumeric}}int64_t{{/isNumeric}}{{^isNumeric}}util
     return {};
 }
 
-EnumUnderlyingType fromEnum({{classname}}::e{{classname}} e)
+{{classname}}::EnumUnderlyingType {{classname}}::fromEnum({{classname}}::e{{classname}} e)
 {
 {{#allowableValues}}
     switch (e)
@@ -104,7 +100,6 @@ EnumUnderlyingType fromEnum({{classname}}::e{{classname}} e)
     }
 {{/allowableValues}}
     return {};
-}
 }
 
 {{classname}}::{{classname}}()

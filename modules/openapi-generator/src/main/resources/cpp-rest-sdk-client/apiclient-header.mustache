@@ -13,6 +13,13 @@
 #include "{{packageName}}/ApiException.h"
 #include "{{packageName}}/IHttpBody.h"
 #include "{{packageName}}/HttpContent.h"
+{{#models}}
+{{#model}}
+{{#isEnum}}
+#include "{{packageName}}/model/{{classFilename}}.h"
+{{/isEnum}}
+{{/model}}
+{{/models}}
 
 #if  defined (_WIN32) || defined (_WIN64)
 #undef U
@@ -52,6 +59,13 @@ public:
     static utility::string_t parameterToString(double value);
     static utility::string_t parameterToString(const utility::datetime &value);
     static utility::string_t parameterToString(bool value);
+    {{#models}}
+    {{#model}}
+    {{#isEnum}}
+    static utility::string_t parameterToString({{classname}} value);
+    {{/isEnum}}
+    {{/model}}
+    {{/models}}
     template<class T>
     static utility::string_t parameterToString(const std::vector<T>& value);
     template<class T>

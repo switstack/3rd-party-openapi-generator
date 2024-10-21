@@ -85,6 +85,17 @@ utility::string_t ApiClient::parameterToString(bool value)
     valueAsStringStream << std::boolalpha << value;
     return utility::conversions::to_string_t(valueAsStringStream.str());
 }
+{{#models}}
+{{#model}}
+{{#isEnum}}
+
+utility::string_t ApiClient::parameterToString({{classname}} value)
+{
+    return parameterToString({{classname}}::fromEnum(value.getValue()));
+}
+{{/isEnum}}
+{{/model}}
+{{/models}}
 
 pplx::task<web::http::http_response> ApiClient::callApi(
     const utility::string_t& path,
