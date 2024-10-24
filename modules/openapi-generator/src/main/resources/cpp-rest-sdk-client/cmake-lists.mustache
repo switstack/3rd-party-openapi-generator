@@ -12,9 +12,6 @@ cmake_minimum_required (VERSION 3.5)
 
 project({{{packageName}}} CXX)
 
-# Force -fPIC even if the project is configured for building a static library.
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-
 set({{{packageName}}}_INSTALL ON CACHE BOOL "Indicate whether output files must be installed")
 
 set(CXX_STANDARD_REQUIRED ON)
